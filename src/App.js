@@ -1,9 +1,10 @@
 // Routing
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // UI
 import { ThemeProvider } from "@mui/material/styles";
+import { createStyles, makeStyles } from "@mui/styles";
 import Theme from "theme";
 
 // Fonts
@@ -23,18 +24,29 @@ const Pages = [
   { path: "*", Component: NotFound },
 ];
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    background: (props) => props.palette.background.default,
+  },
+}));
+
 function App() {
+  const [theme, setTheme] = useState(Theme.lightTheme);
+  const classes = useStyles(theme);
+
   return (
-    <ThemeProvider theme={Theme}>
-      <Router>
-        <Routes>
-          {Pages.map(({ path, Component }) => (
-            <React.Fragment key={path}>
-              <Route exact path={path} element={<Component />} />
-            </React.Fragment>
-          ))}
-        </Routes>
-      </Router>
+    <ThemeProvider theme={theme}>
+      <div className={classes.root}>
+        <Router>
+          <Routes>
+            {Pages.map(({ path, Component }) => (
+              <React.Fragment key={path}>
+                <Route exact path={path} element={<Component />} />
+              </React.Fragment>
+            ))}
+          </Routes>
+        </Router>
+      </div>
     </ThemeProvider>
   );
 }
