@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+// Routing
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+// UI
+import { ThemeProvider } from "@mui/material/styles";
+import Theme from "theme";
+
+// Fonts
+import "@fontsource/poppins/300.css";
+import "@fontsource/poppins/400.css";
+import "@fontsource/poppins/500.css";
+import "@fontsource/poppins/700.css";
+
+// Pages
+import { Home, NotFound } from "pages";
+
+const Pages = [
+  { path: "/home", Component: Home },
+  { path: "*", Component: NotFound },
+];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={Theme}>
+      <Router>
+        <Routes>
+          {Pages.map(({ path, Component }) => (
+            <React.Fragment key={path}>
+              <Route exact path={path} element={<Component />} />
+            </React.Fragment>
+          ))}
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 
