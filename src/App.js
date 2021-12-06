@@ -13,12 +13,13 @@ import "@fontsource/poppins/500.css";
 import "@fontsource/poppins/700.css";
 
 // Pages
-import { Login, Home, NotFound, Recipe } from "pages";
+import { Login, Home, NotFound, Recipe, RecipeList } from "pages";
 
 const Pages = [
   { path: "/", Component: Login },
   { path: "/home", Component: Home },
   { path: "/recipe", Component: Recipe },
+  { path: "/recipe-list", Component: RecipeList },
   { path: "*", Component: NotFound },
 ];
 
