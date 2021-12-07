@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function App() {
-  const [theme, setTheme] = useState(Theme.lightTheme);
+  const [theme, setTheme] = useState(Theme.darkTheme);
   const classes = useStyles(theme);
 
   return (

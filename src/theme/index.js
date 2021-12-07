@@ -9,7 +9,7 @@ const theme = {
         default: grey[200],
       },
       google: {
-        main: deepOrange["A700"],
+        main: grey[900],
       },
     },
     typography: {
@@ -20,6 +20,10 @@ const theme = {
   darkTheme: createTheme({
     palette: {
       mode: "dark",
+
+      google: {
+        main: grey[200],
+      },
     },
     typography: {
       fontFamily: ["Poppins", "sans-serif"].join(","),
