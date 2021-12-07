@@ -5,7 +5,8 @@ import React from "react";
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      marginTop: "40vh",
+      height: "100vh",
+      width: "100%",
     },
   })
 );
@@ -13,8 +14,13 @@ const useStyles = makeStyles((theme) =>
 const NotFound = () => {
   const classes = useStyles();
   return (
-    <Grid className={classes.root} container justifyContent={"space-around"}>
-      <Typography align="center" variant="h3">
+    <Grid
+      className={classes.root}
+      container
+      justifyContent={"space-around"}
+      alignItems={"center"}
+    >
+      <Typography color="textPrimary" align="center" variant="h3">
         Page Not Found
       </Typography>
     </Grid>

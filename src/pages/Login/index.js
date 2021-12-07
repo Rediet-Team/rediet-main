@@ -7,6 +7,7 @@ import {
   Container,
   Button,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { LoadingButton } from "@mui/lab";
 import { makeStyles, createStyles, useTheme } from "@mui/styles";
 import { deepOrange } from "@mui/material/colors";
@@ -31,7 +32,7 @@ const useStyles = makeStyles((theme) =>
       marginBottom: "5rem",
     },
     logoMobile: {
-      maxHeight: "30rem",
+      maxHeight: "15rem",
     },
     carouselImage: {
       maxHeight: "25rem",
@@ -43,6 +44,7 @@ const useStyles = makeStyles((theme) =>
     },
     carouseItem: {
       minHeight: "30rem",
+      userSelect: "none",
       padding: theme.spacing(3),
     },
   })
@@ -76,11 +78,13 @@ const Login = () => {
   const theme = useTheme();
   const md = useMediaQuery(theme.breakpoints.down("lg"));
   const [loading, setLoading] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleClick = () => {
     setLoading(true);
     window.setTimeout(() => {
       setLoading(false);
+      navigate("/home");
     }, 2000);
   };
 
@@ -102,39 +106,100 @@ const Login = () => {
             className={classes.paper}
           >
             {!md && (
-              <img
-                className={classes.logo}
-                src={ReDietPlain}
-                alt="rediet-logo"
-              />
+              <React.Fragment>
+                <Grid container>
+                  <Grid item xs={12}>
+                    <img
+                      className={classes.logo}
+                      src={ReDietPlain}
+                      alt="rediet-logo"
+                    />
+                  </Grid>
+                  <Grid
+                    itemxs={12}
+                    sx={{ paddingLeft: "4rem" }}
+                    container
+                    justifyContent="space-around"
+                    spacing={2}
+                  >
+                    <Grid item xs={12}>
+                      <Typography variant="h2">Welcome to ReDiet</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Typography>
+                        Dietary tips and Recipes for you to try!
+                      </Typography>
+                    </Grid>
+                  </Grid>
+
+                  <Grid
+                    item
+                    xs={12}
+                    container
+                    justifyContent="center"
+                    alignItems=""
+                  >
+                    <LoadingButton
+                      sx={{
+                        marginTop: "3rem",
+                        color: theme.palette.getContrastText(
+                          theme.palette.google.main
+                        ),
+                      }}
+                      color="google"
+                      onClick={handleClick}
+                      loading={loading}
+                      variant="contained"
+                    >
+                      Continue as Guest
+                    </LoadingButton>
+                  </Grid>
+                </Grid>
+              </React.Fragment>
             )}
 
             {md && (
-              <Grid item container justifyContent="space-around">
-                <img
-                  className={classes.logoMobile}
-                  src={theme.palette.mode === "dark" ? ReDietDark : ReDietLight}
-                  alt="rediet-logo"
-                />
+              <Grid
+                sx={{ minHeight: "100vh" }}
+                item
+                container
+                justifyContent="space-between"
+                direction="column"
+                alignItems={"center"}
+              >
+                <Grid item container justifyContent="space-around" xs={12}>
+                  <img
+                    className={classes.logoMobile}
+                    src={
+                      theme.palette.mode === "dark" ? ReDietDark : ReDietLight
+                    }
+                    alt="rediet-logo"
+                  />
+                </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  container
+                  justifyContent="center"
+                  sx={{ marginBottom: "4rem" }}
+                >
+                  <LoadingButton
+                    sx={{
+                      marginTop: "3rem",
+                      color: theme.palette.getContrastText(
+                        theme.palette.google.main
+                      ),
+                    }}
+                    color="google"
+                    onClick={handleClick}
+                    loading={loading}
+                    variant="contained"
+                  >
+                    Continue as Guest
+                  </LoadingButton>
+                </Grid>
               </Grid>
             )}
-
-            <Grid item container justifyContent="center">
-              <LoadingButton
-                sx={{
-                  marginTop: "3rem",
-                  color: theme.palette.getContrastText(
-                    theme.palette.google.main
-                  ),
-                }}
-                color="google"
-                onClick={handleClick}
-                loading={loading}
-                variant="contained"
-              >
-                Continue as Guest
-              </LoadingButton>
-            </Grid>
           </Paper>
         </Grid>
       </Grid>
@@ -159,6 +224,7 @@ const Login = () => {
                     justifyContent="center"
                   >
                     <img
+                      draggable={false}
                       className={classes.carouselImage}
                       src={img}
                       alt="rediet-logo"
