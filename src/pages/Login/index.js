@@ -12,7 +12,9 @@ import { makeStyles, createStyles, useTheme } from "@mui/styles";
 import { deepOrange } from "@mui/material/colors";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import Carousel from "react-material-ui-carousel";
-import ReDietLogo from "assets/images/ReDiet.png";
+import ReDietLight from "assets/images/ReDiet-light.png";
+import ReDietDark from "assets/images/ReDiet-dark.png";
+import ReDietPlain from "assets/images/ReDiet-plain.png";
 import BGImg1 from "assets/images/LoginBG-1.svg";
 import BGImg2 from "assets/images/LoginBG-2.svg";
 import BGImg3 from "assets/images/LoginBG-3.svg";
@@ -27,6 +29,9 @@ const useStyles = makeStyles((theme) =>
     logo: {
       maxHeight: "8rem",
       marginBottom: "5rem",
+    },
+    logoMobile: {
+      maxHeight: "30rem",
     },
     carouselImage: {
       maxHeight: "25rem",
@@ -69,7 +74,7 @@ const carouselSettings = {
 const Login = () => {
   const classes = useStyles();
   const theme = useTheme();
-  const md = useMediaQuery(theme.breakpoints.down("md"));
+  const md = useMediaQuery(theme.breakpoints.down("lg"));
   const [loading, setLoading] = React.useState(false);
 
   const handleClick = () => {
@@ -99,23 +104,35 @@ const Login = () => {
             {!md && (
               <img
                 className={classes.logo}
-                src={ReDietLogo}
+                src={ReDietPlain}
                 alt="rediet-logo"
               />
+            )}
+
+            {md && (
+              <Grid item container justifyContent="space-around">
+                <img
+                  className={classes.logoMobile}
+                  src={theme.palette.mode === "dark" ? ReDietDark : ReDietLight}
+                  alt="rediet-logo"
+                />
+              </Grid>
             )}
 
             <Grid item container justifyContent="center">
               <LoadingButton
                 sx={{
                   marginTop: "3rem",
-                  color: "white",
+                  color: theme.palette.getContrastText(
+                    theme.palette.google.main
+                  ),
                 }}
                 color="google"
                 onClick={handleClick}
                 loading={loading}
                 variant="contained"
               >
-                Continue With Google
+                Continue as Guest
               </LoadingButton>
             </Grid>
           </Paper>
