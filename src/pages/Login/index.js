@@ -15,7 +15,7 @@ import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import Carousel from "react-material-ui-carousel";
 import ReDietLight from "assets/images/ReDiet-light.png";
 import ReDietDark from "assets/images/ReDiet-dark.png";
-import ReDietPlain from "assets/images/ReDiet-plain.png";
+import ReDietPlain from "assets/images/ReDiet-plain-2.png";
 import BGImg1 from "assets/images/LoginBG-1.svg";
 import BGImg2 from "assets/images/LoginBG-2.svg";
 import BGImg3 from "assets/images/LoginBG-3.svg";
@@ -24,11 +24,12 @@ import BGImg4 from "assets/images/LoginBG-4.svg";
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      minHeight: "100vh",
+      minHeight: "auto",
       margin: "0",
     },
     logo: {
-      maxHeight: "8rem",
+      maxHeight: "3rem",
+      margin: "1rem 0 5rem 1.5rem",
       marginBottom: "5rem",
     },
     logoMobile: {
@@ -160,7 +161,7 @@ const Login = () => {
 
             {md && (
               <Grid
-                sx={{ minHeight: "100vh" }}
+                sx={{ minHeight: "auto" }}
                 item
                 container
                 justifyContent="space-between"
